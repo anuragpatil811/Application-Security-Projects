@@ -1,0 +1,26 @@
+1} REGULAR SCAN :- nmap www.jio.com
+2} INTENSE SCAN :- nmap -T4 -A -v www.jio.com
+3} INTENSE SCAN PLUS UDP :- nmap -sS -sU -T4 -A -v www.jio.com
+4} INTENSE SCAN ALL TCP PORTS :- nmap -p 1-65535 -T4 -A -v
+www.jio.com
+5} INTENSE SCAN NO PING :- nmap -T4 -A -v -Pn www.jio.com
+6} PING SCAN :- nmap -T4 -A -v -Pn www.jio.com
+7} QUICK SCAN :- nmap -T4 -F www.jio.com
+8} QUICK SCAN PLUS ;- nmap -sV -T4 -O -F --version-light
+www.jio.com
+9} QUICK TRACEROUTE :- nmap -sn --traceroute www.jio.com
+10} SLOW COMPREHENSIVE SCAN :- nmap -sS -sU -T4 -A -v -PE -PP
+-PS80,443 -PA3389 -PU40125 -PY -g 53 --script "default or (discovery
+and safe)" www.jio.com
+
+Q7} Use NMAP(NETWORK MAPPER) to perform port scanning on the
+network of Tech Startup Inc. to locate malware and vulnerabilities.
+nmap 192.168.1.0/24
+
+nmap -sV <target>
+This command will attempt to determine the version of the services running on the
+open ports, which can help identify specific vulnerabilities.
+
+nmap -A <target>
+This command enables aggressive scanning techniques, including OS detection,
+version detection, script scanning, and traceroute.

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Bank</title>
+    <style>
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            margin-top: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #imageContainer {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="loginContainer">
+    <h2>Login to Global Bank</h2>
+    <form id="loginForm" onsubmit="return validateLogin()">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+<div id="imageContainer">
+    <img id="bankImage" src="C:\Users\coe8\Downloads\20220918_031158.jpg" alt="Bank Image">
+</div>
+
+<script>
+    function validateLogin() {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+
+        if (username === 'admin' && password === 'password') {
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('imageContainer').style.display = 'block';
+            document.getElementById('bankImage').src = 'C:\\Users\\coe8\\Downloads\\20220918_031158.jpg'; // Change the path to your image
+            return false; // Prevent form submission for demonstration
+        } else {
+            alert('Invalid username or password. Please try again.');
+            return false; 
+        }
+    }
+        return true;
+    }
+</script>
+
+<script>
+    // Add this script to make the code vulnerable to XSS attack
+    function injectXSS() {
+        var username = document.getElementById('username');
+        username.value = 'admin<script>alert("XSS Attack")</script>';
+    }
+</script>
+
+<button onclick="injectXSS()">Inject XSS</button>
+
+</body>
+</html>

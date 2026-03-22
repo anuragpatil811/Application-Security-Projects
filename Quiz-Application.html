@@ -1,0 +1,90 @@
+<html >
+<head>
+<title>Quiz Application</title>
+<style>
+  
+    body {
+        font-family: Arial, sans-serif;
+        background-color: gray; 
+        margin: 0;
+        padding: 0;
+}
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+       // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        color: blue;
+        text-align: center;
+    }
+    .question {
+        margin-bottom: 20px;
+    }
+    .options label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    input[type="radio"] {
+        margin-right: 10px;
+    }
+    #result {
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>True or False Questions</h1>
+    <form id="quizForm">
+        <div class="question">
+            <p>1). The Earth is flat.</p>
+            <div class="options">
+                <label><input type="radio" name="q1" value="true"> True</label>
+                <label><input type="radio" name="q1" value="false"> False</label>
+            </div>
+        </div>
+        <div class="question">
+            <p>2). Water boils at 100 degrees Celsius.</p>
+            <div class="options">
+                <label><input type="radio" name="q2" value="true"> True</label>
+                <label><input type="radio" name="q2" value="false"> False</label>
+            </div>
+        </div>
+        <div class="question">
+            <p>3). The sun rises in the west.</p>
+            <div class="options">
+                <label><input type="radio" name="q3" value="true"> True</label>
+                <label><input type="radio" name="q3" value="false"> False</label>
+            </div>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+    <div id="result"></div>
+</div>
+
+<script>
+document.getElementById('quizForm').addEventListener('submit', function(e) {
+    e.preventDefault(); 
+
+    var formData = new FormData(this);
+    var score = 0;
+
+    
+    formData.forEach(function(value, key) {
+        if (value === 'true') {
+            score++;
+        }
+    });
+    var resultContainer = document.getElementById('result');
+    resultContainer.textContent = 'You got ' + score + ' out of 3 questions correct.';
+});
+</script>
+
+</body>
+</html>

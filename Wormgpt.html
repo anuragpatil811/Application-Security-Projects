@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bank Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Bank Website</h1>
+    </header>
+    <main>
+        <section id="account">
+            <h2>Account</h2>
+            <div id="account-container">
+                <h3>Account Number</h3>
+                <input type="text" id="account-number" placeholder="Account Number">
+                <h3>Account Holder</h3>
+                <input type="text" id="account-holder" placeholder="Account Holder Name">
+                <h3>Balance</h3>
+                <p id="balance"></p>
+            </div>
+        </section>
+        <section id="transactions">
+            <h2>Transactions</h2>
+            <div id="transaction-container"></div>
+        </section>
+    </main>
+    <script src="script.js">
+	const accountNumber = document.getElementById('account-number');
+const accountHolder = document.getElementById('account-holder');
+const balance = document.getElementById('balance');
+
+// Fetching account balance from server
+fetch('/api/balance')
+  .then(response => response.json())
+  .then(data => {
+    balance.textContent = `Balance: $${data.balance}`;
+  });
+
+// Listening for user input changes
+accountNumber.addEventListener('input', () => {
+  fetch('/api
+	</script>
+    <style>
+        #account-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        #account-container h3 {
+            font-size: 1.2em;
+        }
+    </style>
+</body>
+</html>

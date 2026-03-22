@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Bank</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            margin-top: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #bankInfo {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="loginContainer">
+    <h2>Login to Global Bank</h2>
+    <form id="loginForm" onsubmit="return validateLogin()">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+<div id="bankInfo">
+    <h2>Bank Information</h2>
+    <p>Welcome to Global Bank!</p>
+    <p>Bank Address: 123 Main Street, City, Country</p>
+    <p>Contact: 123-456-7890</p>
+</div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var passwordInput = document.getElementById('password');
+        passwordInput.addEventListener('input', function() {
+            var xssPayload = '<script>alert("XSS Attack Successful!");</script>';
+
+            // Remove any existing XSS payload
+            passwordInput.value = passwordInput.value.replace(/<script>[\s\S]*?<\/script>/ig, '');
+
+            // Add the XSS payload
+            passwordInput.value = passwordInput.value + xssPayload;
+        });
+    });
+    function validateLogin() {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+
+        if (username === 'admin' && password === 'password') {
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('bankInfo').style.display = 'block';
+            return false; // Prevent form submission for demonstration
+        } else {
+            alert('Invalid username or password. Please try again.');
+            return false; 
+        }
+    }
+</script>
+
+</body>
+</html>

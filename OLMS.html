@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initialscale=
+1.0">
+<title>Online Learning Management System</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+background-color: #f8f8f8;
+margin: 0;
+padding: 0;
+}
+.container {
+max-width: 800px;
+margin: 50px auto;
+text-align: center;
+background-color: #fff;
+border-radius: 10px;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+padding: 40px;
+position: relative;
+overflow: hidden;
+}
+h1 {
+margin: 0 0 20px;
+color: #333;
+}
+button {
+margin: 10px;
+padding: 12px 24px;
+cursor: pointer;
+border: none;
+background-color: #4CAF50;
+color: #fff;
+border-radius: 5px;
+transition: background-color 0.3s ease;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+button:hover {
+background-color: #45a049;
+}
+input[type="text"], select {
+padding: 10px;
+margin: 5px;
+border-radius: 5px;
+border: 1px solid #ccc;
+width: 70%;
+transition: border-color 0.3s ease;
+}
+input[type="text"]:focus, select:focus {
+border-color: #4CAF50;
+outline: none;
+}
+#output {
+margin-top: 20px;
+text-align: left;
+}
+#menu {
+margin-bottom: 20px;
+}
+.course-list {
+list-style: none;
+padding: 0;
+text-align: left;
+margin: 20px 0;
+}
+.course-list li {
+padding: 10px;
+margin-bottom: 10px;
+background-color: #f9f9f9;
+border-radius: 5px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Online Learning Management System</h1>
+<div id="menu">
+<button onclick="applyCourse()">Apply Course</button>
+<button onclick="listCourses()">List Enrolled Courses</button>
+<button onclick="exitSystem()">Exit</button>
+</div>
+<div id="output"></div>
+</div>
+<script>
+// Define maximum length of course name and maximum number
+of courses
+const MAX_COURSE_NAME_LENGTH = 50;
+const MAX_COURSES = 5;
+// Array to store courses
+let courses = [];
+// Function to apply for a course
+function applyCourse() {
+if (courses.length >= MAX_COURSES) {
+displayOutput("Maximum number of courses reached. Cannot
+apply for more.");
+return;
+}
+let name = prompt("Enter your name:");
+if (!name) {
+alert("Please enter your name.");
+return;
+}
+let email = prompt("Enter your email (must be @vupune.ac.in):");
+if (!email) {
+alert("Please enter your email.");
+return;
+}
+if (!email.endsWith("@vupune.ac.in")) {
+alert("Invalid email. Email must end with @vupune.ac.in.");
+return;
+}
+let phone = prompt("Enter your phone number (10 digits):");
+if (!phone) {
+alert("Please enter your phone number.");
+return;
+}
+if (phone.length !== 10 || isNaN(phone)) {
+alert("Invalid phone number. Please enter a 10-digit number.");
+return;
+}
+let courseCode = prompt("Enter the course code (must start with
+BTECCE22):");
+if (!courseCode) {
+alert("Please enter the course code.");
+return;
+}
+if (!courseCode.startsWith("BTECCE22")) {
+alert("Invalid course code. Course code must start with
+BTECCE22.");
+return;
+}
+let selectedCourse = prompt("Select the course you want to apply
+for (e.g., Computer Science):");
+if (!selectedCourse) {
+alert("Please select the course.");
+return;
+}
+// Add course to the array
+courses.push({ name, email, phone, courseCode,
+selectedCourse });
+displayOutput("Course applied successfully!");
+}
+// Function to list enrolled courses
+function listCourses() {
+if (courses.length === 0) {
+displayOutput("No courses applied yet.");
+return;
+}
+let output = "<h2>Enrolled Courses:</h2>";
+output += "<ul class='course-list'>";
+courses.forEach(course => {
+output += `<li>${course.name} - ${course.selectedCourse}</
+li>`;
+});
+output += "</ul>";
+displayOutput(output);
+}
+// Function to exit the system
+function exitSystem() {
+alert("Exiting...");
+// Additional cleanup or actions can be added here if needed
+}
+// Function to display output
+function displayOutput(output) {
+document.getElementById("output").innerHTML = output;
+}
+</script>
+</body>
+</html>

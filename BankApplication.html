@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="globalBankApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Bank</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        input[type="text"],
+        input[type="password"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="LoginController" class="container">
+        <h2>Login to Global Bank</h2>
+        <form id="loginForm" ng-submit="login()">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" ng-model="username" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" ng-model="password" required>
+            <button type="submit">Login</button>
+            <button type="button" ng-click="changePassword()">Change Password</button>
+        </form>
+        <div id="alertMessage" style="display: none; color: red; margin-top: 10px;">{{ errorMessage }}</div>
+        <div id="imageContainer" style="display: none; margin-top: 20px;">
+            <h3>Welcome!</h3>
+            <img src="C:\Users\coe8\Documents\InvoiceSampleBank.webp" alt="Bank Image">
+        </div>
+        <div id="changePasswordForm" style="display: none; margin-top: 20px;">
+            <h3>Change Password</h3>
+            <form id="passwordForm" ng-submit="changePasswordSubmit()">
+                <label for="newPassword">New Password</label>
+                <input type="password" id="newPassword" name="newPassword" ng-model="newPassword" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        var app = angular.module('globalBankApp', []);
+
+        app.controller('LoginController', function($scope) {
+            $scope.login = function() {
+                if ($scope.password === "password") {
+                    $scope.errorMessage = "";
+                    document.getElementById("loginForm").style.display = "none";
+                    document.getElementById("imageContainer").style.display = "block";
+                } else {
+                    $scope.errorMessage = "Invalid password. Please try again.";
+                }
+            };
+
+            $scope.changePassword = function() {
+                document.getElementById("imageContainer").style.display = "none";
+                document.getElementById("changePasswordForm").style.display = "block";
+            };
+
+            $scope.changePasswordSubmit = function() {
+                alert("Password changed successfully!");
+                document.getElementById("changePasswordForm").style.display = "none";
+                document.getElementById("imageContainer").style.display = "block";
+            };
+        });
+    </script>
+</body>
+</html>

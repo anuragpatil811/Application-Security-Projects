@@ -1,0 +1,91 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Account Form  for Registration</title>
+    <style>
+        body {
+            
+            background-color: gray;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        } 
+        form {
+            background-color: yellow;
+            padding: 20px;
+            border-radius: 80px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: yellow;
+            color: red;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form id="bankRegistrationForm">
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="accountNumber">Account Number:</label>
+        <input type="text" id="accountNumber" name="accountNumber" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="button" onclick="validateForm()">Register</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            var fullName = document.getElementById("fullName").value;
+            var gender = document.getElementById("gender").value;
+            var accountNumber = document.getElementById("accountNumber").value;
+            var email = document.getElementById("email").value;
+            var phoneNumber = document.getElementById("phoneNumber").value;
+            var password = document.getElementById("password").value;
+
+            if (fullName === "" || gender === "" || accountNumber === "" || email === "" || phoneNumber === "" || password === "") {
+                alert("Please fill in all fields");
+                return;
+            }
+
+            alert("Registration successful!\nFull Name: " + fullName + "\nGender: " + gender + "\nAccount Number: " + accountNumber + "\nEmail: " + email + "\nPhone Number: " + phoneNumber);
+        }
+    </script>
+</body>
+</html>

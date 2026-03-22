@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Bank</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    input[type="text"],
+    input[type="password"],
+    button {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        box-sizing: border-box;
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Login to Global Bank</h2>
+    <form id="loginForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Login</button>
+        <button type="button" onclick="changePassword()">Change Password</button>
+    </form>
+    <div id="alertMessage" style="display: none; color: red; margin-top: 10px;"></div>
+    <div id="imageContainer" style="display: none; margin-top: 20px;">
+        <h3>Welcome!</h3>
+        <img src="C:\Users\coe8\Documents\InvoiceSampleBank.webp" alt="Bank Image">
+    </div>
+    <div id="changePasswordForm" style="display: none; margin-top: 20px;">
+        <h3>Change Password</h3>
+        <form id="passwordForm">
+            <label for="newPassword">New Password</label>
+            <input type="password" id="newPassword" name="newPassword" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+<script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+       
+        
+        if (password === "password") {
+            document.getElementById("loginForm").style.display = "none";
+            document.getElementById("imageContainer").style.display = "block";
+        } else {
+            document.getElementById("alertMessage").innerHTML = "Invalid password. Please try again.";
+            document.getElementById("alertMessage").style.display = "block";
+        }
+    });
+
+    function changePassword() {
+        document.getElementById("imageContainer").style.display = "none";
+        document.getElementById("changePasswordForm").style.display = "block";
+    }
+
+    document.getElementById("passwordForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var newPassword = document.getElementById("newPassword").value;
+        
+      
+        alert("Password changed successfully!");
+        document.getElementById("changePasswordForm").style.display = "none";
+        document.getElementById("imageContainer").style.display = "block";
+    });
+</script>
+</body>
+</html>

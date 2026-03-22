@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        input[type="text"], input[type="password"], button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="login-container">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+        <button id="changePassword">Change Password</button>
+    </div>
+
+    <div class="container hidden" id="change-password-container">
+        <h2>Change Password</h2>
+        <input type="password" id="old-password" placeholder="Old Password" required>
+        <input type="password" id="new-password" placeholder="New Password" required>
+        <button onclick="changePassword()">Change Password</button>
+    </div>
+
+    <div class="container hidden" id="image-container">
+        <h2>Welcome</h2>
+        <img src="C:\Users\coe8\Documents\InvoiceSampleBank.webp" alt="User Image">
+    </div>
+
+    <script>
+        let changedPassword = false;
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const enteredPassword = document.getElementById('password').value;
+
+            if (username && enteredPassword) {
+                if (changedPassword && enteredPassword === localStorage.getItem('password')) {
+                    document.getElementById('login-container').classList.add('hidden');
+                    document.getElementById('image-container').classList.remove('hidden');
+                } else {
+                    alert('Wrong Password');
+                }
+            } else {
+                alert('Invalid username or password');
+            }
+        }
+
+        function changePassword() {
+            const oldPassword = document.getElementById('old-password').value;
+            const newPassword = document.getElementById('new-password').value;
+
+            if (oldPassword && newPassword) {
+                // Simulating password change
+                localStorage.setItem('password', newPassword);
+                changedPassword = true;
+                alert('Password changed successfully');
+                document.getElementById('change-password-container').classList.add('hidden');
+                document.getElementById('login-container').classList.remove('hidden');
+            } else {
+                alert('Invalid old password or new password');
+            }
+        }
+
+        document.getElementById('changePassword').addEventListener('click', function() {
+            document.getElementById('login-container').classList.add('hidden');
+            document.getElementById('change-password-container').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>

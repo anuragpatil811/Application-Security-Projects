@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initialscale=
+1.0">
+<title>Social Media Page</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+}
+.container {
+width: 80%;
+margin: 0 auto;
+}
+.post-form, .post {
+margin-top: 20px;
+}
+.post {
+border: 1px solid #ccc;
+padding: 10px;
+margin: 10px 0;
+}
+.post h2 {
+margin: 0;
+font-size: 1.5em;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Social Media Page</h1>
+<!-- Post Form -->
+<div class="post-form">
+<h2>Create a Post</h2>
+<form action="" method="GET">
+<label for="post-content">Content:</label>
+<input type="text" id="post-content" name="post-content"
+required>
+<br>
+<button type="submit">Post</button>
+</form>
+</div>
+<!-- Display Post -->
+<div class="post">
+<h2>Latest Post</h2>
+<p id="display-content"></p>
+</div>
+</div>
+<script>
+// Display the post content if it exists in the query string
+const urlParams = new
+URLSearchParams(window.location.search);
+const postContent = urlParams.get('post-content');
+if (postContent) {
+document.getElementById('display-content').innerHTML =
+postContent;
+}
+</script>
+</body>
+</html>
+
+/*In the form, enter a script tag as the content, for example:
+html
+Copy code
+<script>alert('XSS Attack!')</script>
+Submit the form.
+Explanation
+When you submit the form, the page reloads and the post-content
+parameter from the query string is reflected directly into the page's
+HTML without any sanitization. This causes the browser to execute the
+injected script, displaying an alert box with the message "XSS Attack!". */

