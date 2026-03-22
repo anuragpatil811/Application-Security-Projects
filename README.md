@@ -1,2 +1,2 @@
-# Application-Security-Projects
-Includes all the codes of academic projects of Application Security
+# Application-Security
+Includes all the codes, notes, and documents of assignments and projects of Application Security
