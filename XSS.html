@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="globalBankApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Bank</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            margin-top: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #imageContainer {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="LoginController">
+
+<div class="container" id="loginContainer">
+    <h2>Login to Global Bank</h2>
+    <form id="loginForm" ng-submit="validateLogin()">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" ng-model="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" ng-model="password" required>
+       
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+<div id="imageContainer" ng-show="isLoggedIn">
+    <img id="bankImage" src="1631335285381.jpg" alt="Bank Image">
+
+</div>
+
+<button ng-click="injectXSS()">Inject XSS</button>
+
+<script>
+    var app = angular.module('globalBankApp', []);
+
+    app.controller('LoginController', function($scope) {
+        $scope.isLoggedIn = false;
+        $scope.bankImage = "C:\\Users\\coe8\\Downloads\\1631335285381.jpg"; // Initial image path
+
+        $scope.validateLogin = function() {
+            if ($scope.username === 'admin' && $scope.password === 'password' ) {
+                $scope.isLoggedIn = true;
+                return false; // Prevent form submission for demonstration
+            } else {
+                alert('Invalid username or password. Please try again.');
+                return false;
+            }
+        };
+
+        $scope.injectXSS = function() {
+            $scope.username = 'admin<script>alert("XSS Attack")</script>';
+        };
+    });
+</script>
+
+</body>
+</html>
